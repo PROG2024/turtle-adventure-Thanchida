@@ -13,7 +13,7 @@ if __name__ == "__main__":
     root = tk.Tk()
     root.title("Turtle's Adventure")
     root.geometry(f"{SCREEN_WIDTH}x{SCREEN_HEIGHT}")
-    root.resizable(False, False) # games usually have fixed window size
-    game = TurtleAdventureGame(root, SCREEN_WIDTH, SCREEN_HEIGHT, level=1)
+    root.resizable(False, False)    # games usually have fixed window size
+    game = TurtleAdventureGame(root, SCREEN_WIDTH, SCREEN_HEIGHT, level=3)  # my game have 3 levels
     game.start()
     root.mainloop()

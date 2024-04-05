@@ -242,12 +242,6 @@ class Enemy(TurtleGameElement):
         )
 
 
-# TODO
-# * Define your enemy classes
-# * Implement all methods required by the GameElement abstract class
-# * Define enemy's update logic in the update() method
-# * Check whether the player hits this enemy, then call the
-#   self.game.game_over_lose() method in the TurtleAdventureGame class.
 class RandomWalkEnemy(Enemy):
 
     def __init__(self,
@@ -389,7 +383,7 @@ class TrainEnemy(Enemy):
                 size: int,
                 color: str):
         super().__init__(game, size, color)
-        self.walk = 50
+        self.walk = 70
         self.speed = 4
         self.state = self.right
         self.check = True
@@ -421,7 +415,7 @@ class TrainEnemy(Enemy):
                 self.state = self.down
             if not self.check:
                 self.state = self.up
-            self.walk += 50
+            self.walk += 70
 
     def render(self) -> None:
         self.canvas.coords(self.__id,
@@ -433,16 +427,6 @@ class TrainEnemy(Enemy):
     def delete(self) -> None:
         pass
 
-
-
-
-# TODO
-# Complete the EnemyGenerator class by inserting code to generate enemies
-# based on the given game level; call TurtleAdventureGame's add_enemy() method
-# to add enemies to the game at certain points in time.
-#
-# Hint: the 'game' parameter is a tkinter's frame, so it's after()
-# method can be used to schedule some future events.
 
 class EnemyGenerator:
     """
@@ -475,22 +459,119 @@ class EnemyGenerator:
         """
         Create a new enemy, possibly based on the game level
         """
-        random_walk_enemy = RandomWalkEnemy(self.__game, 20, "red")
-        random_walk_enemy.x = 100
-        random_walk_enemy.y = 100
-        self.game.add_element(random_walk_enemy)
+        if self.level == 1:
+            random_walk_enemy_1 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_1.x = 100
+            random_walk_enemy_1.y = 100
 
-        chasing_enemy = ChasingEnemy(self.__game, 20, "red")
-        self.game.add_element(chasing_enemy)
+            random_walk_enemy_2 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_2.x = 500
+            random_walk_enemy_2.y = 100
 
-        fencing_enemy = FencingEnemy(self.__game, 15, "red")
-        fencing_enemy.x = self.game.home.x-self.game.home.size/2 - 10
-        fencing_enemy.y = self.game.home.y-self.game.home.size/2 - 10
-        self.game.add_element(fencing_enemy)
+            random_walk_enemy_3 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_3.x = 700
+            random_walk_enemy_3.y = 300
 
-        train_enemy = TrainEnemy(self.__game, 20, color="red")
-        self.game.add_element(train_enemy)
-        self.game.after(10000, self.create_enemy)
+            random_walk_enemy_4 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_4.x = 0
+            random_walk_enemy_4.y = 300
+
+            random_walk_enemy_5 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_5.x = 0
+            random_walk_enemy_5.y = 500
+
+            random_walk_enemy_6 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_6.x = 300
+            random_walk_enemy_6.y = 0
+            self.game.add_element(random_walk_enemy_1)
+            self.game.add_element(random_walk_enemy_2)
+            self.game.add_element(random_walk_enemy_3)
+            self.game.add_element(random_walk_enemy_4)
+            self.game.add_element(random_walk_enemy_5)
+            self.game.add_element(random_walk_enemy_6)
+            self.game.after(10000, self.create_enemy)
+
+        if self.level == 2:
+            random_walk_enemy_1 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_1.x = 100
+            random_walk_enemy_1.y = 100
+
+            random_walk_enemy_2 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_2.x = 500
+            random_walk_enemy_2.y = 100
+
+            random_walk_enemy_3 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_3.x = 700
+            random_walk_enemy_3.y = 300
+
+            random_walk_enemy_4 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_4.x = 0
+            random_walk_enemy_4.y = 300
+
+            random_walk_enemy_5 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_5.x = 0
+            random_walk_enemy_5.y = 500
+
+            random_walk_enemy_6 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_6.x = 300
+            random_walk_enemy_6.y = 0
+            self.game.add_element(random_walk_enemy_1)
+            self.game.add_element(random_walk_enemy_2)
+            self.game.add_element(random_walk_enemy_3)
+            self.game.add_element(random_walk_enemy_4)
+            self.game.add_element(random_walk_enemy_5)
+            self.game.add_element(random_walk_enemy_6)
+
+            chasing_enemy = ChasingEnemy(self.__game, 20, "red")
+            self.game.add_element(chasing_enemy)
+
+            fencing_enemy = FencingEnemy(self.__game, 15, "red")
+            fencing_enemy.x = self.game.home.x-self.game.home.size/2 - 10
+            fencing_enemy.y = self.game.home.y-self.game.home.size/2 - 10
+            self.game.add_element(fencing_enemy)
+            self.game.after(10000, self.create_enemy)
+
+        if self.level == 3:
+            random_walk_enemy_1 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_1.x = 100
+            random_walk_enemy_1.y = 100
+
+            random_walk_enemy_2 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_2.x = 500
+            random_walk_enemy_2.y = 100
+
+            random_walk_enemy_3 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_3.x = 700
+            random_walk_enemy_3.y = 300
+
+            random_walk_enemy_4 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_4.x = 0
+            random_walk_enemy_4.y = 300
+
+            random_walk_enemy_5 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_5.x = 0
+            random_walk_enemy_5.y = 500
+
+            random_walk_enemy_6 = RandomWalkEnemy(self.__game, 20, "red")
+            random_walk_enemy_6.x = 300
+            random_walk_enemy_6.y = 0
+            self.game.add_element(random_walk_enemy_1)
+            self.game.add_element(random_walk_enemy_2)
+            self.game.add_element(random_walk_enemy_3)
+            self.game.add_element(random_walk_enemy_4)
+            self.game.add_element(random_walk_enemy_5)
+            self.game.add_element(random_walk_enemy_6)
+
+            chasing_enemy = ChasingEnemy(self.__game, 20, "red")
+            self.game.add_element(chasing_enemy)
+
+            fencing_enemy = FencingEnemy(self.__game, 15, "red")
+            fencing_enemy.x = self.game.home.x - self.game.home.size / 2 - 10
+            fencing_enemy.y = self.game.home.y - self.game.home.size / 2 - 10
+            self.game.add_element(fencing_enemy)
+            train_enemy = TrainEnemy(self.__game, 20, color="red")
+            self.game.add_element(train_enemy)
+            self.game.after(10000, self.create_enemy)
 
 
 class TurtleAdventureGame(Game): # pylint: disable=too-many-ancestors
