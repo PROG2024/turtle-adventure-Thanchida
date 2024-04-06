@@ -383,9 +383,9 @@ class TrainEnemy(Enemy):
                 size: int,
                 color: str):
         super().__init__(game, size, color)
-        self.walk = 70
-        self.speed = 4
-        self.state = self.right
+        self.walk = self.canvas.winfo_width() - 100
+        self.speed = 5
+        self.state = self.left
         self.check = True
 
     def create(self) -> None:
@@ -400,22 +400,22 @@ class TrainEnemy(Enemy):
         self.y += self.speed
         if self.y > self.canvas.winfo_height():
             self.check = False
-            self.state = self.right
+            self.state = self.left
 
     def up(self):
         self.y -= self.speed
         if self.y < 0:
             self.check = True
-            self.state = self.right
+            self.state = self.left
 
-    def right(self):
-        self.x += self.speed
-        if self.x > self.walk:
+    def left(self):
+        self.x -= self.speed
+        if self.x < self.walk:
             if self.check:
                 self.state = self.down
             if not self.check:
                 self.state = self.up
-            self.walk += 70
+            self.walk -= 100
 
     def render(self) -> None:
         self.canvas.coords(self.__id,
@@ -570,6 +570,8 @@ class EnemyGenerator:
             fencing_enemy.y = self.game.home.y - self.game.home.size / 2 - 10
             self.game.add_element(fencing_enemy)
             train_enemy = TrainEnemy(self.__game, 20, color="red")
+            train_enemy.x = self.game.canvas.winfo_width()
+            train_enemy.y = 0
             self.game.add_element(train_enemy)
             self.game.after(10000, self.create_enemy)
 
